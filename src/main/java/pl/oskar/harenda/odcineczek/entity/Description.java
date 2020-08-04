@@ -1,8 +1,11 @@
 package pl.oskar.harenda.odcineczek.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Description {
 
     @Id
