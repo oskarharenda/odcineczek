@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import pl.oskar.harenda.odcineczek.entity.Series;
 import pl.oskar.harenda.odcineczek.repository.SeriesRepository;
 
+import java.util.List;
+
 @Service
 public class SeriesService {
 
@@ -13,25 +15,25 @@ public class SeriesService {
         this.seriesRepository = seriesRepository;
     }
 
-    public Series getSeriesById(Long id){
+    public Series getSeriesById(Long id) {
         return seriesRepository.findById(id).orElseGet(() -> null);
     }
 
-    public Iterable<Series> getAllSeries(){
+    public List<Series> getAllSeries() {
         return seriesRepository.findAll();
     }
 
-    public Series addSeries(Series series){
-       return seriesRepository.save(series);
+    public Series addSeries(Series series) {
+        return seriesRepository.save(series);
     }
 
-    public Series updateSeries(Series series, Long id){
+    public Series updateSeries(Series series, Long id) {
         seriesRepository.findById(id).orElseGet(() -> null);
         series.setId(id);
         return seriesRepository.save(series);
     }
 
-    public void deleteSeries(Long id){
+    public void deleteSeries(Long id) {
         seriesRepository.deleteById(id);
     }
 }

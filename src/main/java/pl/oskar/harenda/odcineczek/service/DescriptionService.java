@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import pl.oskar.harenda.odcineczek.entity.Description;
 import pl.oskar.harenda.odcineczek.repository.DescriptionRepository;
 
+import java.util.List;
+
 @Service
 public class DescriptionService {
 
@@ -17,7 +19,7 @@ public class DescriptionService {
         return descriptionRepository.findById(id).orElseGet(() -> null);
     }
 
-    public Iterable<Description> getAllDescription() {
+    public List<Description> getAllDescription() {
         return descriptionRepository.findAll();
     }
 
