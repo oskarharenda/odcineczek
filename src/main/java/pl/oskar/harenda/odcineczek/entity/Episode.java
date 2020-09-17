@@ -18,6 +18,8 @@ public class Episode {
 
     private String links;
 
+    private int episodeNr;
+
     @OneToMany
     private List<Description> descriptionList = new ArrayList<>();
 

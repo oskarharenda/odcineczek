@@ -20,7 +20,4 @@ public class Season {
 
     @OneToMany
     private List<Episode> episodeList = new ArrayList<>();
-
-    @ManyToOne
-    private Series series;
 }

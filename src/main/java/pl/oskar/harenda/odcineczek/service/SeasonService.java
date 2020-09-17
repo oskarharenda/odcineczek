@@ -1,7 +1,10 @@
 package pl.oskar.harenda.odcineczek.service;
 
-import org.springframework.stereotype.Service;
+import
+        org.springframework.stereotype.Service;
+import pl.oskar.harenda.odcineczek.entity.Episode;
 import pl.oskar.harenda.odcineczek.entity.Season;
+import pl.oskar.harenda.odcineczek.repository.EpisodeRepository;
 import pl.oskar.harenda.odcineczek.repository.SeasonRepository;
 
 import java.util.List;
@@ -10,9 +13,11 @@ import java.util.List;
 public class SeasonService {
 
     private final SeasonRepository seasonRepository;
+    private final EpisodeRepository episodeRepository;
 
-    public SeasonService(SeasonRepository seasonRepository) {
+    public SeasonService(SeasonRepository seasonRepository, EpisodeRepository episodeRepository) {
         this.seasonRepository = seasonRepository;
+        this.episodeRepository = episodeRepository;
     }
 
     public Season getSeasonById(Long id) {
@@ -24,6 +29,12 @@ public class SeasonService {
     }
 
     public Season addSeason(Season season) {
+        for(int i=1; i<=season.getEpisodesNr(); i++){
+            Episode episode = new Episode();
+            episode.setEpisodeNr(i);
+            episode.setSeason(season);
+            episodeRepository.save(episode);
+        }
         return seasonRepository.save(season);
     }
 
